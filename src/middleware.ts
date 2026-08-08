@@ -4,7 +4,7 @@ import { verifyToken } from '@/lib/auth';
 
 export const runtime = 'edge';
 
-export async function proxy(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // 1. Protect Admin Page Routes (e.g. /admin/dashboard)
@@ -43,5 +43,3 @@ export async function proxy(req: NextRequest) {
 export const config = {
   matcher: ['/admin/:path*', '/api/admin/:path*'],
 };
-
-export const middleware = proxy;
