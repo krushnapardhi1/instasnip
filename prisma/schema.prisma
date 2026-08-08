@@ -1,0 +1,23 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model DownloadLog {
+  id        String   @id @default(uuid())
+  timestamp DateTime @default(now())
+  url       String
+  ipAddress String
+  status    String   // "SUCCESS" or "FAILED"
+  errorMsg  String?
+}
+
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
